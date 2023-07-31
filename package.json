@@ -1,6 +1,6 @@
 {
   "name": "@vanekt/rendero-screen",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "vanekt",
   "license": "MIT",
   "devDependencies": {
@@ -18,11 +18,10 @@
     "format": "prettier --write 'src/**/*.{js,jsx}'",
     "lint": "eslint src --ext .js,.jsx --config .eslintrc.js"
   },
-  "dependencies": {
-    "react": "^18.2.0"
-  },
+  "dependencies": {},
   "description": "",
   "peerDependencies": {
+    "react": ">=17.0.0",
     "react-router-dom": ">=5.2.0"
   }
 }
