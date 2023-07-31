@@ -1,6 +1,6 @@
 {
   "name": "@vanekt/rendero-screen",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "vanekt",
   "license": "MIT",
   "devDependencies": {
@@ -23,6 +23,6 @@
   },
   "description": "",
   "peerDependencies": {
-    "react-router-dom": "^6.14.2"
+    "react-router-dom": ">=5.2.0"
   }
 }
