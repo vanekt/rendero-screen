@@ -1,0 +1,28 @@
+{
+  "name": "@vanekt/rendero-screen",
+  "version": "1.0.1",
+  "author": "vanekt",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.46.0",
+    "eslint-plugin-react": "^7.33.1",
+    "microbundle-crl": "^0.13.11",
+    "prettier": "^3.0.0"
+  },
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
+  "scripts": {
+    "build": "microbundle-crl",
+    "format": "prettier --write 'src/**/*.{js,jsx}'",
+    "lint": "eslint src --ext .js,.jsx --config .eslintrc.js"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "description": "",
+  "peerDependencies": {
+    "react-router-dom": "^6.14.2"
+  }
+}
