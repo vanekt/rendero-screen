@@ -5,6 +5,8 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
+const APPEND_CHILD_COMPONENT_NAME = "append_child";
+
 function StaticScreen({ dataFn, renderFn, children, vars = {} }) {
   const [data, setData] = useState(children[0]);
 
@@ -14,7 +16,17 @@ function StaticScreen({ dataFn, renderFn, children, vars = {} }) {
         return setData(children[0]);
       },
       load: async (source, params) => {
-        return dataFn(source, params).then(setData);
+        return dataFn(source, params).then((data1) => {
+          if (data1.type === APPEND_CHILD_COMPONENT_NAME) {
+            return setData({
+              module: "react",
+              type: "fragment",
+              children: [data, ...data1.children],
+            });
+          }
+
+          setData(data1);
+        });
       },
     },
     ...vars,
@@ -67,7 +79,17 @@ function Screen({
         return fetchData(source, params);
       },
       load: async (source, params) => {
-        return dataFn(source, params).then(setData);
+        return dataFn(source, params).then((data1) => {
+          if (data1.type === APPEND_CHILD_COMPONENT_NAME) {
+            return setData({
+              module: "react",
+              type: "fragment",
+              children: [data, ...data1.children],
+            });
+          }
+
+          setData(data1);
+        });
       },
     },
     ...vars,
