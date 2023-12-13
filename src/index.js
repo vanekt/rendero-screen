@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useLocation } from "react-router-dom";
 
 function useQuery() {
@@ -46,6 +46,7 @@ function Screen({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  const initData = useRef(null);
 
   const fetchData = async (s, p) => {
     setLoading(true);
@@ -53,6 +54,7 @@ function Screen({
     return dataFn(s, p)
       .then((data) => {
         setData(data);
+        initData.current = data;
         setError(null);
       })
       .catch(setError)
@@ -76,7 +78,7 @@ function Screen({
   return renderFn(data, {
     screen: {
       refresh: async () => {
-        return fetchData(source, params);
+        return setData(initData.current);
       },
       load: async (source, params) => {
         return dataFn(source, params).then((data1) => {
