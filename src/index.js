@@ -11,6 +11,7 @@ function StaticScreen({ dataFn, renderFn, children, vars = {} }) {
   const [data, setData] = useState(children[0]);
 
   return renderFn(data, {
+    ...vars,
     screen: {
       refresh: async () => {
         return setData(children[0]);
@@ -29,7 +30,6 @@ function StaticScreen({ dataFn, renderFn, children, vars = {} }) {
         });
       },
     },
-    ...vars,
   });
 }
 
@@ -76,6 +76,7 @@ function Screen({
   }
 
   return renderFn(data, {
+    ...vars,
     screen: {
       refresh: async () => {
         return setData(initData.current);
@@ -94,7 +95,6 @@ function Screen({
         });
       },
     },
-    ...vars,
   });
 }
 
