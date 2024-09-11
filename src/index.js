@@ -175,7 +175,7 @@ function initModule({ onLoading, onError, datasources: ds }) {
           onLoading={onLoading}
           onError={onError}
           params={params}
-          deps={Object.values(params)}
+          deps={Object.values(params || {})}
           {...props}
         />
       ),
