@@ -168,7 +168,7 @@ function initModule({ onLoading, onError, datasources: ds }) {
   return {
     name: "screen",
     components: {
-      screen: ({ dataFn = "fetch", params, ...props }, { render }) => (
+      screen: ({ dataFn = "fetch", params = {}, ...props }, { render }) => (
         <Screen
           dataFn={datasources[dataFn]}
           renderFn={render}
