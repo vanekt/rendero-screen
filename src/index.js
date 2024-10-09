@@ -140,7 +140,7 @@ function QueryScreen({
         default:
           return [i[0], v];
       }
-    }),
+    })
   );
 
   return (
@@ -175,7 +175,7 @@ function initModule({ onLoading, onError, datasources: ds }) {
           onLoading={onLoading}
           onError={onError}
           params={params}
-          deps={Object.values(params || {})}
+          deps={JSON.stringify(params)}
           {...props}
         />
       ),
