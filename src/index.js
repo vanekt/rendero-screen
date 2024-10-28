@@ -177,10 +177,16 @@ function initModule({ onLoading, onError, datasources: ds }) {
           params={params}
           deps={JSON.stringify(params)}
           {...props}
+          key={props.key}
         />
       ),
       static_screen: ({ dataFn = "fetch", ...props }, { render, children }) => (
-        <StaticScreen dataFn={datasources[dataFn]} renderFn={render} {...props}>
+        <StaticScreen
+          dataFn={datasources[dataFn]}
+          renderFn={render}
+          {...props}
+          key={props.key}
+        >
           {children}
         </StaticScreen>
       ),
@@ -191,6 +197,7 @@ function initModule({ onLoading, onError, datasources: ds }) {
           onLoading={onLoading}
           onError={onError}
           {...props}
+          key={props.key}
         />
       ),
       query_screen: ({ dataFn = "fetch", ...props }, { render }) => (
@@ -200,6 +207,7 @@ function initModule({ onLoading, onError, datasources: ds }) {
           onLoading={onLoading}
           onError={onError}
           {...props}
+          key={props.key}
         />
       ),
     },
