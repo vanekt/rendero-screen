@@ -39,6 +39,7 @@ function Screen({
   onLoading,
   onError,
   source,
+  hideSpinner,
   params = {},
   deps = [],
   vars = {},
@@ -68,7 +69,7 @@ function Screen({
   }, [source, ...deps]);
 
   if (loading) {
-    return typeof onLoading === "function" ? onLoading() : null;
+    return typeof onLoading === "function" && !hideSpinner ? onLoading() : null;
   }
 
   if (error) {
