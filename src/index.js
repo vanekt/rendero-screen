@@ -169,8 +169,12 @@ function initModule({ onLoading, onError, datasources: ds }) {
   return {
     name: "screen",
     components: {
-      screen: ({ dataFn = "fetch", params = {}, ...props }, { render }) => (
+      screen: (
+        { dataFn = "fetch", params = {}, key, ...props },
+        { render }
+      ) => (
         <Screen
+          key={key}
           dataFn={datasources[dataFn]}
           renderFn={render}
           onLoading={onLoading}
@@ -178,37 +182,39 @@ function initModule({ onLoading, onError, datasources: ds }) {
           params={params}
           deps={JSON.stringify(params)}
           {...props}
-          key={props.key}
         />
       ),
-      static_screen: ({ dataFn = "fetch", ...props }, { render, children }) => (
+      static_screen: (
+        { dataFn = "fetch", key, ...props },
+        { render, children }
+      ) => (
         <StaticScreen
+          key={key}
           dataFn={datasources[dataFn]}
           renderFn={render}
           {...props}
-          key={props.key}
         >
           {children}
         </StaticScreen>
       ),
-      card_screen: ({ dataFn = "fetch", ...props }, { render }) => (
+      card_screen: ({ dataFn = "fetch", key, ...props }, { render }) => (
         <CardScreen
+          key={key}
           dataFn={datasources[dataFn]}
           renderFn={render}
           onLoading={onLoading}
           onError={onError}
           {...props}
-          key={props.key}
         />
       ),
-      query_screen: ({ dataFn = "fetch", ...props }, { render }) => (
+      query_screen: ({ dataFn = "fetch", key, ...props }, { render }) => (
         <QueryScreen
+          key={key}
           dataFn={datasources[dataFn]}
           renderFn={render}
           onLoading={onLoading}
           onError={onError}
           {...props}
-          key={props.key}
         />
       ),
     },
