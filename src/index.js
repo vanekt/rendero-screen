@@ -162,7 +162,7 @@ function QueryScreen({
 
 function initModule({ onLoading, onError, datasources: ds }) {
   const datasources = {
-    fetch: window.fetch,
+    fetch,
     ...ds,
   };
 
