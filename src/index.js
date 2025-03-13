@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams, useLocation } from "react-router-dom";
 
 function useQuery() {
-  return new URLSearchParams(useLocation().search);
+  const [init, setInit] = useState();
+
+  useEffect(() => {
+    setInit(window.location.search);
+  }, []);
+
+  return new URLSearchParams(init);
 }
 
 const APPEND_CHILD_COMPONENT_NAME = "append_child";
@@ -99,29 +104,6 @@ function Screen({
   });
 }
 
-function CardScreen({
-  source,
-  dataFn,
-  renderFn,
-  idKey = "id",
-  vars = {},
-  ...props
-}) {
-  const { id = null } = useParams();
-
-  return (
-    <Screen
-      dataFn={dataFn}
-      renderFn={renderFn}
-      source={source}
-      params={{ [idKey]: id }}
-      deps={[id]}
-      vars={vars}
-      {...props}
-    />
-  );
-}
-
 function QueryScreen({
   dataFn,
   renderFn,
@@ -196,16 +178,6 @@ function initModule({ onLoading, onError, datasources: ds }) {
         >
           {children}
         </StaticScreen>
-      ),
-      card_screen: ({ dataFn = "fetch", key, ...props }, { render }) => (
-        <CardScreen
-          key={key}
-          dataFn={datasources[dataFn]}
-          renderFn={render}
-          onLoading={onLoading}
-          onError={onError}
-          {...props}
-        />
       ),
       query_screen: ({ dataFn = "fetch", key, ...props }, { render }) => (
         <QueryScreen
