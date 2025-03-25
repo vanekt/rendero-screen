@@ -1,15 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function useQuery() {
-  const [init, setInit] = useState();
-
-  useEffect(() => {
-    setInit(window.location.search);
-  }, []);
-
-  return new URLSearchParams(init);
-}
-
 const APPEND_CHILD_COMPONENT_NAME = "append_child";
 
 function StaticScreen({ dataFn, renderFn, children, vars = {} }) {
@@ -112,7 +102,7 @@ function QueryScreen({
   vars = {},
   ...props
 }) {
-  const query = useQuery();
+  const query = new URLSearchParams(window.location.search);
 
   const qqq = Object.fromEntries(
     Object.entries(queryMap || {}).map((i) => {
